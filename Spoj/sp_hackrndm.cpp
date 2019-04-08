@@ -1,0 +1,89 @@
+/* Code by : Suraj (@suraj1611) */
+
+#include<bits/stdc++.h>
+#include <string>
+
+using namespace std;
+
+#define ll long long int
+#define rep(i,n) for(int i=0; i<n; i++)
+#define rep1(i,n) for(int i=1;i<=n;i++)
+#define mx INT_MAX
+#define mn INT_MIN
+#define md 1000000007
+#define pb push_back
+#define mp make_pair
+#define pf printf
+#define sc scanf
+#define maxsize 1100005
+#define lb cout<<endl;
+#define F first
+#define S second
+#define print(i) cout<<i<<endl
+#define print1(i,j) cout<<i<<" "<<j<<endl
+#define label cout<<"hello!"<<endl
+#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL);cout.tie(NULL);
+
+ll power(ll x, ll  y) 
+{ 
+    if (y == 0) 
+        return 1; 
+    else if (y%2 == 0) 
+        return power(x, y/2)*power(x, y/2); 
+    else
+        return x*power(x, y/2)*power(x, y/2); 
+} 
+
+ll bs(ll a[],ll x,ll n)
+{
+
+	ll l=0,h=n-1,mid=l+(h-l)/2;
+	while(l<=h)
+	{
+		mid=l+(h-l)/2;
+		if(x<a[mid])
+			h=mid-1;
+		else if(x>a[mid])
+			l=mid+1;
+		else
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int main()
+{
+	IOS
+	
+	#ifndef ONLINE_JUDGE   
+	    freopen("in.txt", "r", stdin);
+	    freopen("out.txt", "w", stdout);
+	#endif
+
+	ll n,k;
+	cin>>n>>k;
+	ll a[n];
+	rep(i,n)
+	{
+		cin>>a[i];
+	}
+	sort(a,a+n);
+	ll c=0;
+	rep(i,n)
+	{
+		//ll lw=lower_bound (a,a+n,a[i]+k) - a;
+		if(bs(a,a[i]+k,n))
+			c++;
+		//cout<<a[lw]<<endl;
+	}
+	cout<<c<<endl;
+
+
+	#ifndef ONLINE_JUDGE
+    	cout<<"\nTime Elapsed : " << 1.0*clock() / CLOCKS_PER_SEC << " s\n";
+    #endif
+
+    return 0;
+}
